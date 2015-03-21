@@ -1,2 +1,2 @@
 # opos
-oen piece of sudoku
+one piece of sudoku
