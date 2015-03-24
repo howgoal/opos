@@ -9,9 +9,96 @@
     tools:context="com.example.opos.MainActivity" >
 
     <TextView
-        android:id="@+id/textview1"
+        android:id="@+id/tittle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="#BBFFEE"
+        android:text="One Piece of Sudoku"
+        android:textSize="38sp"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+     <TextView
+        android:id="@+id/time_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/time"
+        android:layout_toRightOf="@+id/tittle"
+        android:layout_marginRight="3dp"
+        android:layout_marginLeft="40dp"
+        android:text="Time: "
+        android:textSize="30sp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:text="00:00"
+        android:textSize="30sp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ImageView
+        android:id="@+id/sudoku"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="140dp"
+        android:background="@drawable/question2" />
+
+    <ImageView
+        android:id="@+id/blocks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="20dp"
+		android:layout_below="@+id/sudoku"
+        android:background="@drawable/bar" />
+
+    <ImageButton
+        android:id="@+id/newgame"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_alignLeft="@+id/sudoku"
+        android:layout_below="@+id/tittle"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="57dp"
+        android:background="@drawable/newgame" />
+
+    <ImageButton
+        android:id="@+id/save"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_alignBottom="@+id/newgame"
+        android:layout_marginLeft="40dp"
+        android:layout_toRightOf="@+id/eraser"
+        android:background="@drawable/save" />
+ 
+
+    <ImageButton
+        android:id="@+id/eraser"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_alignBottom="@+id/newgame"
+        android:layout_marginLeft="40dp"
+        android:layout_toRightOf="@+id/newgame"
+        android:background="@drawable/eraser" />
+
+    <ImageButton
+        android:id="@+id/exit"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_alignBottom="@+id/save"
+        android:layout_toRightOf="@+id/save"
+        android:layout_marginLeft="40dp"
+        android:background="@drawable/exit" />
 
 </RelativeLayout>
