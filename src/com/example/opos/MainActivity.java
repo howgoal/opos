@@ -15,7 +15,6 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		textView = (TextView) findViewById(R.id.textview1);
 		// FileIO io = new FileIO();
 		// io.writeFile();
 		// textView.setText("!" + io.readFile("output.txt"));
