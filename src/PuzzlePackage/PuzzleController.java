@@ -1,32 +1,33 @@
 package PuzzlePackage;
 
 import java.util.HashMap;
-import java.util.Random;
 
-import android.R.integer;
+import android.R;
+import android.R.xml;
 import android.content.Context;
 import android.util.Log;
 
 public class PuzzleController {
 	private Context context;
 	private int bitMax = 4;
+	private int sudokuMapMax = 9;
 	private int priorityMax = 1000;
 	private int puzzleShpaeTotal = 13;
-	private int puzzleMapSolution[][] = {{1,2,3,4,5,6,7,8,9},{1,2,3,4,5,6,7,8,9},{1,2,3,4,5,6,7,8,9}};
+	private int puzzleMapSolution[][] = {{1,2,3,4,5,6,7,8,9},{4,5,6,4,5,6,7,8,9},{1,2,3,4,5,6,7,8,9}};
 	private int isSapcePuzzle[][] = {{1,1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1,1}};
 	private HashMap<Integer, Integer> mapShapeImageID;
 	private int puzzleKey[] = {1,2,4,8,3,6,12,9,7,11,14,13,15};
+	private int mapIndexPaddingX[] ={0,0,1,1};
+	private int mapIndexPaddingY[] ={0,1,1,0};
+	private PuzzleImageView puzzleImageView;
 	private static PuzzleController puzzleControllerInstance = null;
 	private PuzzleController() {
 		String test ="";
-		//Log.v("string", String.valueOf(isSapcePuzzle.length));
+		
 		for (int i = 0; i < isSapcePuzzle.length; i++) {
 			for (int j = 0; j < isSapcePuzzle[0].length; j++) {
 				test += puzzleMapSolution[i][j]+" ";
 			}
-			Log.v("test", test);
-			test = "";
-			
 		}
 		//mapShapeImageID = new HashMap<Integer, Integer>();
 		
@@ -53,19 +54,27 @@ public class PuzzleController {
 		for (int i = 0; i < isSapcePuzzle.length-1; i++) {
 			for (int j = 0; j < isSapcePuzzle[0].length-1; j++) {
 				//Read bit 
-				int total = getAvailableNumber(isSapcePuzzle,i,j);
+				int total = getAvailableNumber(isSapcePuzzle,i,j);				
 				int count = getSpaceCount(total);
-				int shape = getAssignedShape(total, count);
-				PuzzleImageView puzzleImageView = new PuzzleImageView(context);
-				puzzleImageView.setShapeNumber(shape);
+				puzzleImageView = new PuzzleImageView(context);
+				int shapeNumber = getAssignedShapeNumber(total, count);		
+				puzzleImageView.setShapeNumber(shapeNumber);	
+				puzzleImageView.setShapeBit(changeNumberToShapeBit(shapeNumber));
+				puzzleImageView.setSolution(getSolutionBit(shapeNumber,i, j));
 				puzzleImageView.setPriority((int)(Math.random()*priorityMax));
+				puzzleImageView.setImageID();
 				
 			}
+		
 		}
-		Log.v("end","end");
 	}
-	
-	public int getAssignedShape(int shapeSpace,int spaceCount) {
+	/**
+	 * Get the shape number like 1 = 0001 ;
+	 * @param shapeSpace
+	 * @param spaceCount
+	 * @return
+	 */
+	public int getAssignedShapeNumber(int shapeSpace,int spaceCount) {
 		int shape = 0;
 		int availableCount = 0;
 		int available[] = new int[puzzleShpaeTotal];
@@ -86,17 +95,30 @@ public class PuzzleController {
 		
 		return shape;
 	}
+	/**
+	 * if shape number = 4  ,we could get space count = 1 by binary (0100)
+	 * The binary 1 mean space (which could place number)
+	 * @param number
+	 * @return
+	 */
 	public int getSpaceCount(int number) {
+		String bit = changeNumberToShapeBit(number);
 		int count = 0;
-		int result = 0;
-		while (number > 0) {
-			count += number % 2;
-			number =  number / 2;
+		for (int i = 0; i < bit.length(); i++) {
+			if(bit.charAt(i) == '1') {
+				count+=1;
+			}
 		}
 		return count;
 	}
 	
-
+	/**
+	 * Binary number change to decimal
+	 * @param bit
+	 * @param i
+	 * @param j
+	 * @return
+	 */
 	public int getAvailableNumber(int bit[][],int i,int j) {
 		int total = 0;
 		total += 1*bit[i][j];
@@ -104,6 +126,47 @@ public class PuzzleController {
 		total += Math.pow(2, 2)*bit[i+1][j+1];
 		total += Math.pow(3, 2)*bit[i+1][j+1];
 		return total;
+	}
+	public String getSpaceBit() {
+		String space = "";
+		return "0";
+	}
+	public String getSolutionBit(int shapeNumber,int i,int j) {
+		String spaceBit = changeNumberToShapeBit(shapeNumber);
+		String soultion = "";
+		for (int k = 0; k < bitMax; k++) {
+			if(spaceBit.charAt(k) == '1') {
+				int x = j+mapIndexPaddingX[k];
+				int y = i+mapIndexPaddingY[k];
+				soultion += String.valueOf(puzzleMapSolution[x][y]);
+			}
+			else {
+				soultion += "0";
+			}
+		}
+		
+		return soultion;
+	}
+	/**	
+	 * Example  4 to binary => 0100
+	 * @param shapeNumber
+	 * @return
+	 */
+	public String changeNumberToShapeBit(int shapeNumber) {
+		String bit = "";
+		int count = 0;
+		int result = 0;
+		while (shapeNumber > 0) {
+			bit = String.valueOf(shapeNumber % 2)+bit;
+			shapeNumber =  shapeNumber / 2;
+		}
+		while (bit.length() < 4) {
+			bit = "0"+bit;		
+		}
+		return bit;
+	}
+	public PuzzleImageView getPuzzle() {
+		return puzzleImageView;
 	}
 
 }

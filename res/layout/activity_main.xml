@@ -1,5 +1,5 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -16,89 +16,48 @@
         android:layout_alignParentTop="true"
         android:background="#BBFFEE"
         android:text="One Piece of Sudoku"
-        android:textSize="38sp"
-        android:textStyle="bold"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-    
-     <TextView
-        android:id="@+id/time_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/time"
-        android:layout_toRightOf="@+id/tittle"
-        android:layout_marginRight="3dp"
-        android:layout_marginLeft="40dp"
-        android:text="Time: "
-        android:textSize="30sp"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-		android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:text="00:00"
-        android:textSize="30sp"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <ImageView
-        android:id="@+id/sudoku"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/title"
-        android:layout_marginTop="140dp"
-        android:background="@drawable/question2" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/blocks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="20dp"
-		android:layout_below="@+id/sudoku"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/sudoku"
         android:background="@drawable/bar" />
 
-    <ImageButton
-        android:id="@+id/newgame"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_alignLeft="@+id/sudoku"
-        android:layout_below="@+id/tittle"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="57dp"
-        android:background="@drawable/newgame" />
+    <ImageView
+        android:id="@+id/sudoku"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/blocks"
+        android:layout_below="@+id/time_title"
+        android:background="@drawable/question2" />
 
-    <ImageButton
-        android:id="@+id/save"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_alignBottom="@+id/newgame"
-        android:layout_marginLeft="40dp"
-        android:layout_toRightOf="@+id/eraser"
-        android:background="@drawable/save" />
- 
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/time_title"
+        android:layout_alignBottom="@+id/time_title"
+        android:layout_alignRight="@+id/sudoku"
+        android:layout_marginRight="15dp"
+        android:text="00:00"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="18sp" />
 
-    <ImageButton
-        android:id="@+id/eraser"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_alignBottom="@+id/newgame"
-        android:layout_marginLeft="40dp"
-        android:layout_toRightOf="@+id/newgame"
-        android:background="@drawable/eraser" />
-
-    <ImageButton
-        android:id="@+id/exit"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_alignBottom="@+id/save"
-        android:layout_toRightOf="@+id/save"
-        android:layout_marginLeft="40dp"
-        android:background="@drawable/exit" />
+    <TextView
+        android:id="@+id/time_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tittle"
+        android:layout_toLeftOf="@+id/time"
+        android:text="Time: "
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="18sp" />
 
 </RelativeLayout>
