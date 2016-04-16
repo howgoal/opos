@@ -8,11 +8,11 @@ import java.io.IOException;
 
 public class FileIO {
 	String readData = "";
-
+ 
 	public void writeFile(String fileName) {
 		try {
 			FileWriter fw = new FileWriter("/sdcard/" + fileName, false);
-			BufferedWriter bw = new BufferedWriter(fw); // 將BufferedWeiter與FileWrite物件做連結
+			BufferedWriter bw = new BufferedWriter(fw); // 嚙瞇BufferedWeiter嚙瞑FileWrite嚙踝蕭嚙踟做連嚙踝蕭
 			bw.write("Hello, Sih! Hello, Android!");
 			bw.newLine();
 			bw.close();
